@@ -7,11 +7,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+
+    private boolean isDestroyed = false;
 
     private EmailSelectionEditText editText;
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, MY_PERMISSIONS_REQUEST_READ_CONTACTS);
             }
         } else {
-            editText.setHelpEnabled(true);
+            onContactsPermitted();
         }
     }
 
@@ -38,9 +41,28 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    editText.setHelpEnabled(true);
+                    onContactsPermitted();
                 }
             }
         }
+    }
+
+    private void onContactsPermitted() {
+        editText.setHelpEnabled(true);
+        new GetContsTask(this).execute();
+    }
+
+    public void setContacts(List<Contact> list) {
+        editText.setContactList(list);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isDestroyed = true;
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed;
     }
 }
