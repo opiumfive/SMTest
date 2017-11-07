@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
     private boolean isDestroyed = false;
-
+    private GetContsTask getContsTask;
     private EmailSelectionEditText editText;
 
     @Override
@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void onContactsPermitted() {
         editText.setHelpEnabled(true);
-        new GetContsTask(this).execute();
+        getContsTask = new GetContsTask(this);
+        getContsTask.execute();
     }
 
     public void setContacts(List<Contact> list) {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         isDestroyed = true;
+        getContsTask.cancel(true);
     }
 
     public boolean isDestroyed() {
