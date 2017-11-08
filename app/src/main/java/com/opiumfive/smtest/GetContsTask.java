@@ -60,8 +60,6 @@ public class GetContsTask extends AsyncTask<Void, Void, List<Contact>> {
         return contList;
     }
 
-
-
     @Override
     protected void onPostExecute(List<Contact> result) {
         MainActivity activity = mActivity.get();
