@@ -25,7 +25,7 @@ public class GetContsTask extends AsyncTask<Void, Void, List<Contact>> {
 
         List<Contact> contList = new ArrayList<>();
 
-        if (activity != null) {
+        if (activity != null && !isCancelled()) {
             HashSet<String> emailsSet = new HashSet<>();
 
             ContentResolver cr = activity.getContentResolver();
