@@ -11,24 +11,24 @@ import java.util.List;
 
 public class ContactSearchAdapter extends ArrayAdapter<Contact> {
 
-    private List<Contact> originalData = null;
-    private List<Contact> filteredData = null;
+    private List<Contact> originalData;
+    private List<Contact> filteredData;
     private ItemFilter filter = new ItemFilter();
 
     public ContactSearchAdapter(Context context, int resourse, List<Contact> data) {
         super(context, resourse, data);
-        this.filteredData = data ;
-        this.originalData = data ;
+        this.filteredData = data;
+        this.originalData = data;
     }
 
     @Override
     public int getCount() {
-        return filteredData.size();
+        return filteredData == null ? 0 : filteredData.size();
     }
 
     @Override
     public Contact getItem(int position) {
-        return filteredData.get(position);
+        return filteredData == null ? null : filteredData.get(position);
     }
 
     @NonNull
@@ -36,8 +36,6 @@ public class ContactSearchAdapter extends ArrayAdapter<Contact> {
     public Filter getFilter() {
         return filter;
     }
-
-
 
     private class ItemFilter extends Filter {
         @Override

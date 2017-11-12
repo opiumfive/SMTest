@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onContactsPermitted() {
-        editText.setHelpEnabled(true);
         getContsTask = new GetContsTask(this);
         getContsTask.execute();
     }
