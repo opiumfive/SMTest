@@ -1,10 +1,11 @@
-package com.opiumfive.smtest;
+package com.opiumfive.smtest.email_choser_view;
 
 
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import com.opiumfive.smtest.MainActivity;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,7 +16,7 @@ public class GetContsTask extends AsyncTask<Void, Void, List<Contact>> {
 
     private WeakReference<MainActivity> mActivity;
 
-    GetContsTask(MainActivity activity) {
+    public GetContsTask(MainActivity activity) {
         mActivity = new WeakReference<>(activity);
     }
 

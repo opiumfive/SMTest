@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.opiumfive.smtest.MainActivity">
 
-    <com.opiumfive.smtest.EmailSelectionEditText
+    <com.opiumfive.smtest.email_choser_view.EmailSelectionEditText
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:inputType="textEmailAddress|textNoSuggestions|textMultiLine"
-
-        android:textSize="12sp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@.,"
+        android:textSize="13sp"
         android:hint="@string/email_selection_edit_hint" />
+
+    <Button
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/get_result"/>
 
 </FrameLayout>
